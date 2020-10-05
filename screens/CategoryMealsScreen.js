@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { prependOnceListener } from 'cluster';
+
+import { CATEGORIES } from '../data/dummy-data';
 
 const CategoryMealsScreen = props => {
+  const catId = props.navigation.getParam('categoryId');
+
+  const selectedCategory = CATEGORIES.find((object) => object.id === catId);
     return (
         <View style={styles.screen}>
           <Text>The Category Meals screen!</Text>
+          <Text>{selectedCategory.title}</Text>
           <Button title="Go to meal details!" onPress={() => {
             props.navigation.navigate({ routeName: 'MealDetail' });
           }} />
