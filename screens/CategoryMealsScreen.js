@@ -5,7 +5,7 @@ import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealItem from '../components/MealItem';
 
 const CategoryMealsScreen = props => {
-  const renderMealItem = itemData => {
+  const renderMealItem = (itemData) => {
     return (
      <MealItem
        title={itemData.item.title}
@@ -13,9 +13,13 @@ const CategoryMealsScreen = props => {
        duration={itemData.item.duration}
        complexity={itemData.item.complexity}
        affordability={itemData.item.affordability}
-       onSelectMeal={() => {}}
-      />
-    );
+       onSelectMeal={() => {
+        props.navigation.navigate({ routeName: 'MealDetail',
+        params: {
+          mealId: itemData.item.id
+        }});
+       }}
+      />);
   };
 
   const catId = props.navigation.getParam('categoryId');

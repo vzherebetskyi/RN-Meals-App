@@ -13,11 +13,11 @@ const MealItem = props => {
           <TouchableOpacity onPress={props.onSelectMeal}>
             <View>
                 <View style={{...styles.mealRow, ...styles.mealHeader}}>
-                  <View style={styles.titleContainer}>
                     <ImageBackground source={{uri: props.image}} style={styles.bgImage}>
-                      <Text style={styles.title} numberOfLines={1}>{props.title}</Text>
+                      <View style={styles.titleContainer}>
+                        <Text style={styles.title} numberOfLines={1}>{props.title}</Text>
+                      </View>
                     </ImageBackground>
-                  </View>
                 </View>
                 <View style={{ ...styles.mealRow, ...styles.mealDetails}}>
                   <Text>{props.duration}m</Text>
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     borderRadius: 10,
     overflow: 'hidden',
+    marginVertical: 10,
   },
   mealRow: {
     flexDirection: 'row',
