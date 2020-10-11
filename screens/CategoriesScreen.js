@@ -1,7 +1,9 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { CATEGORIES } from '../data/dummy-data';
+import HeaderButton from '../components/HeaderButton';
 import CategoryGridTile from '../components/CategoryGridTile';
 
 const CategoriesScreen = props => {
@@ -25,17 +27,31 @@ const CategoriesScreen = props => {
         renderItem={renderGridItem}
         numColumns={2}
       />
-        // <View style={styles.screen}>
-        //   <Text>The Categories screen!</Text>
-        //   <Button title="Go to meals!" onPress={() => {
-        //     props.navigation.navigate({ routeName: 'CategoryMeals' });
-        //   }} />
-        // </View>
+      // <View style={styles.screen}>
+      //   <Text>The Categories screen!</Text>
+      //   <Button title="Go to meals!" onPress={() => {
+      //     props.navigation.navigate({ routeName: 'CategoryMeals' });
+      //   }} />
+      // </View>
     );
 };
 
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Meal Categories',
+    headerLeft:
+    <HeaderButtons
+      HeaderButtonComponent={HeaderButton}  
+    >
+      <Item
+        title="Menu"
+        iconName='ios-menu'
+        onPress={() => {
+          navData.navigation.toggleDrawer();
+        }}
+      />
+    </HeaderButtons>
+  };
 };
 
 const styles = StyleSheet.create({
